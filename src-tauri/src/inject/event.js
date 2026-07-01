@@ -333,7 +333,14 @@ document.addEventListener("DOMContentLoaded", () => {
       appWindow.setFullscreen(!fullscreen);
     });
   });
-
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "F11") {
+      event.preventDefault();
+      appWindow.isFullscreen().then((fullscreen) => {
+        appWindow.setFullscreen(!fullscreen);
+      });
+    }
+  });
   if (window["pakeConfig"]?.disabled_web_shortcuts !== true) {
     document.addEventListener("keyup", (event) => {
       if (/windows|linux/i.test(navigator.userAgent) && event.ctrlKey) {
